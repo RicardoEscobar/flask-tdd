@@ -1,16 +1,15 @@
 """System test"""
 import unittest
-from unittest import TestCase
+from tests.system.base_test import BaseTest
 import json
-from app.app import app
 
 
-class TestHome(TestCase):
+class TestHome(BaseTest):
     """TestHome"""
 
     def test_home(self):
         """First test"""
-        with app.test_client() as test_client:
+        with self.app() as test_client:
             response = test_client.get('/')
             self.assertEqual(response.status_code, 200)
             self.assertEqual(json.loads(response.get_data()), {
